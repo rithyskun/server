@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.text.NumberFormat;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +21,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public void registerUser(User user) {
+    public User registerUser(User user) {
         Optional<User> findUserByEmail = userRepository.findUserByEmail(user.getEmail());
 
         if(!StringUtils.hasText(user.getFirstname())){
@@ -34,7 +35,7 @@ public class UserService {
         if(findUserByEmail.isPresent()) {
             throw new IllegalStateException("Email already exists");
         }
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 
     public void deleteUserById(Long userId) {
@@ -47,12 +48,11 @@ public class UserService {
     }
 
     @Transactional
-    public void updateUserById(Long userId, User user) {
+    public User updateUserById(Long userId, User user) {
         User _user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalStateException("The user id " + userId + " does not exists"));
 
         if(_user != null) {
-
             _user.setFirstname(user.getFirstname());
             _user.setLastname(user.getLastname());
             _user.setEmail(user.getEmail());
@@ -62,5 +62,15 @@ public class UserService {
             _user.setStatus(user.getStatus());
             _user.setRoles(user.getRoles());
         }
+
+        return userRepository.save(_user);
+    }
+
+    public User findUserById(String userId) {
+        Long id = Long.parseLong(userId);
+        User _user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("The user id " + userId + " does not exists"));
+
+        return _user;
     }
 }

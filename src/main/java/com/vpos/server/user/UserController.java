@@ -1,10 +1,11 @@
 package com.vpos.server.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/v1/users")
@@ -18,25 +19,36 @@ public class UserController {
     }
 
     @GetMapping
-    @ResponseBody
-    public List<User> getUsers(@RequestParam Map<String,String> allParams) {
-        System.out.println("Rithy" + allParams);
+    public List<User> getUsers() {
        return userService.getUsers();
     }
 
     @PostMapping
-    public void registerUser(@RequestBody User user) {
-        userService.registerUser(user);
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
+      User _user = userService.registerUser(user);
+
+      return ResponseEntity.ok(_user);
     }
 
     @DeleteMapping(path = "{userId}")
-    public void deleteUser(@PathVariable("userId") Long id) {
+    public ResponseEntity<String> deleteUser(@PathVariable("userId") Long id) {
+
         userService.deleteUserById(id);
+        return new ResponseEntity<String>("The user id " + id + " has been removed.", HttpStatus.OK);
     }
 
     @PutMapping(path = "{userId}")
-    public void updateUser(@PathVariable("userId") Long id,
+    public ResponseEntity<User> updateUser(@PathVariable("userId") Long id,
                            @RequestBody User user) {
-        userService.updateUserById(id, user);
+      User _user = userService.updateUserById(id, user);
+
+      return ResponseEntity.ok(_user);
+    }
+
+    @GetMapping(path = {"{userId}"})
+    public ResponseEntity<User> findOneUser(@PathVariable("userId") String id)  {
+        User _user = userService.findUserById(id);
+        return ResponseEntity.ok(_user);
     }
 }

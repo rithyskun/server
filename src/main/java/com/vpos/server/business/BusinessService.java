@@ -23,7 +23,7 @@ public class BusinessService {
     }
 
 
-    public void createBusiness(Business business) {
+    public Business createBusiness(Business business) {
 
         if(!StringUtils.hasText(business.getName())) {
             throw new IllegalStateException("Business name is required");
@@ -35,7 +35,8 @@ public class BusinessService {
             throw new IllegalStateException("The business name " + business.getName() + " already exist");
         }
 
-        businessRepository.save(business);
+       return businessRepository.save(business);
+
     }
 
     public void deleteBusinessById(Long id) {
@@ -51,12 +52,9 @@ public class BusinessService {
     }
 
     @Transactional
-    public void updateBusiness(Long busId, Business business) {
+    public Business updateBusiness(Long busId, Business business) {
 
-        Business _business = businessRepository.findById(busId).orElseThrow(() -> {
-            throw new IllegalStateException("The business id \" + busId + \" does not exists.");
-        });
-
+        Business _business = businessRepository.findById(busId).orElseThrow(() -> new IllegalStateException("The business id \" + busId + \" does not exists."));
 
         if(business != null) {
             if(!StringUtils.hasText(business.getName())){
@@ -74,7 +72,12 @@ public class BusinessService {
             _business.setUserId(business.getUserId());
         }
 
-        businessRepository.save(_business);
+      return businessRepository.save(_business);
 
+    }
+
+    public Business findOneBusiness(String busId) {
+        Long id = Long.parseLong(busId);
+        return businessRepository.findById(id).orElseThrow(() -> new IllegalStateException("The business id " + id + " does not exists"));
     }
 }

@@ -1,6 +1,12 @@
 package com.vpos.server.user;
+import com.vpos.server.business.Business;
+import com.vpos.server.role.Role;
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Entity
 @Table(name = "`users`")
@@ -32,14 +38,23 @@ public class User {
     @Column(name = "is_admin")
     private Boolean is_admin;
 
-    @Column(name = "businessId")
-    private List<Integer> businessId;
+    @OneToMany
+    @JoinColumn(name = "business_id", referencedColumnName = "id")
+    private List<Business> business = new ArrayList<>();
 
     @Column(name = "status", nullable = false)
     private Boolean status;
 
-    @Column(name = "roles")
-    private List<String> roles;
+    @OneToMany
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private List<Role> roles = new ArrayList<>();
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private Date created_at;
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private Date updated_at;
 
     public User() {
     }
@@ -48,15 +63,18 @@ public class User {
         this.id = id;
     }
 
-    public User(String firstname, String lastname, String email, String password, Boolean is_admin, List<Integer> businessId, Boolean status, List<String> roles) {
+
+    public User(String firstname, String lastname, String email, String password, Boolean is_admin, List<Business> business, Boolean status, List<Role> roles, Date created_at, Date updated_at) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.is_admin = is_admin;
-        this.businessId = businessId;
+        this.business = business;
         this.status = status;
         this.roles = roles;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
     }
 
     public Long getId() {
@@ -107,12 +125,12 @@ public class User {
         this.is_admin = is_admin;
     }
 
-    public List<Integer> getBusinessId() {
-        return businessId;
+    public List<Business> getBusiness() {
+        return business;
     }
 
-    public void setBusinessId(List<Integer> businessId) {
-        this.businessId = businessId;
+    public void setBusiness(List<Business> business) {
+        this.business = business;
     }
 
     public Boolean getStatus() {
@@ -123,12 +141,28 @@ public class User {
         this.status = status;
     }
 
-    public List<String> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<String> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
+    }
+
+    public Date getUpdated_at() {
+        return updated_at;
+    }
+
+    public void setUpdated_at(Date updated_at) {
+        this.updated_at = updated_at;
     }
 
     @Override
@@ -140,9 +174,11 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", is_admin=" + is_admin +
-                ", businessId=" + businessId +
+                ", business=" + business +
                 ", status=" + status +
                 ", roles=" + roles +
+                ", created_at=" + created_at +
+                ", updated_at=" + updated_at +
                 '}';
     }
 }

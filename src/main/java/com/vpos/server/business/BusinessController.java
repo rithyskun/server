@@ -8,7 +8,9 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/v1/business")
@@ -33,10 +35,13 @@ public class BusinessController {
     }
 
     @DeleteMapping(path = "{busId}")
-    public ResponseEntity<String> deleteBusiness(@PathVariable("busId") Long id) {
+    public ResponseEntity<Map<String, Boolean>> deleteBusiness(@PathVariable("busId") Long id) {
         businessService.deleteBusinessById(id);
 
-        return new ResponseEntity<>("The business id " + id + " has been removed", HttpStatus.OK);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("The business id " + id + " has been removed", Boolean.TRUE);
+
+        return ResponseEntity.ok(response);
     }
 
     @PutMapping(path = "{busId}")

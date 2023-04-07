@@ -61,15 +61,10 @@ public class BusinessService {
                 throw new IllegalStateException("Business name is required");
             }
 
-            if(business.getUserId() == null) {
-                throw new IllegalStateException("userId is required");
-            }
-
             _business.setName(business.getName());
             _business.setAddress(business.getAddress());
             _business.setAddress1(business.getAddress1());
             _business.setIs_active(business.getIs_active());
-            _business.setUserId(business.getUserId());
         }
 
       return businessRepository.save(_business);

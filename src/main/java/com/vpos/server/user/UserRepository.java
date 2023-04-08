@@ -10,8 +10,10 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-//    @Query("SELECT s FROM User s WHERE LOWER(s.email) LIKE %?1%")
+    @Query("SELECT s FROM User s WHERE s.email = ?1")
     Optional<User> findUserByEmail(String email);
+
+    User findByEmail(String email);
 
     @Query("SELECT s FROM User s WHERE s.email LIKE %?1%")
     List<User> findUserEmailContaining(String email);

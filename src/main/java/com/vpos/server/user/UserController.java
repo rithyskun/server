@@ -1,14 +1,16 @@
 package com.vpos.server.user;
 
+import com.vpos.server.role.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.Collections;
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "api/v1/users")
@@ -22,21 +24,19 @@ public class UserController {
     }
 
     @GetMapping
-    public List<User> getUsers() {
-       return userService.getUsers();
+    public ResponseEntity<List<User>> getUsers() {
+       return ResponseEntity.ok().body(userService.getUsers());
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<User> registerUser(@RequestBody User user) {
-        System.out.println("Rithy " + user);
-      User _user = userService.registerUser(user);
-      return ResponseEntity.ok(_user);
+      URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users").toUriString());
+      return ResponseEntity.created(uri).body(userService.registerUser(user));
     }
 
     @DeleteMapping(path = "{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable("userId") Long id) {
-        userService.deleteUserById(id);
+
         return new ResponseEntity<>("The user id " + id + " has been removed.", HttpStatus.OK);
     }
 
@@ -49,7 +49,7 @@ public class UserController {
     }
 
     @GetMapping(path = "{userId}")
-    public ResponseEntity<User> findOneUser(@PathVariable("userId") String id)  {
+    public ResponseEntity<User> findOneUser(@PathVariable("userId") Long id)  {
         User _user = userService.findUserById(id);
         return ResponseEntity.ok(_user);
     }
@@ -67,5 +67,33 @@ public class UserController {
         else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PostMapping(path = "/role/addtouser")
+    public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
+        userService.addRoleToUser(form.getEmail(), form.getRoleName());
+        return ResponseEntity.ok().build();
+    }
+}
+
+@Repository
+class RoleToUserForm {
+    private String email;
+    private String roleName;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

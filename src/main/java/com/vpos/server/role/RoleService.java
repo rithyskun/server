@@ -40,10 +40,10 @@ public class RoleService {
             throw new IllegalStateException("The role name is required.");
         }
 
-       Optional<Role> _role = roleRepository.findRoleByName(role.getRoleName());
-        if(_role.isPresent()){
-            throw new IllegalStateException("The role name " + role.getRoleName() + "already exists.");
-        }
+//       Role _role = roleRepository.findByRoleName(role.getRoleName());
+//        if(_role == null){
+//            throw new IllegalStateException("The role name " + role.getRoleName() + "already exists.");
+//        }
 
        return roleRepository.save(role);
     }
@@ -54,9 +54,9 @@ public class RoleService {
             throw new IllegalStateException("The role id" + roleId + " does not exists.");
         });
 
-        Optional<Role> exist = roleRepository.findRoleByName(role.getRoleName());
+        Role exist = roleRepository.findByRoleName(role.getRoleName());
 
-        if(exist.isPresent()) throw new IllegalStateException("The role name " + role.getRoleName() + " already exists.");
+        if(exist == null) throw new IllegalStateException("The role name " + role.getRoleName() + " already exists.");
 
         _role.setRoleName(role.getRoleName());
 

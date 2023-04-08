@@ -6,6 +6,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 @Entity
@@ -38,16 +39,14 @@ public class User {
     @Column(name = "is_admin")
     private Boolean is_admin;
 
-    @OneToMany
-    @JoinColumn(name = "business_id", referencedColumnName = "id")
-    private List<Business> business = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Business> business = new ArrayList<>();
 
     @Column(name = "status", nullable = false)
     private Boolean status;
 
-    @OneToMany
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private List<Role> roles = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     @CreatedDate
     @Column(name = "created_at")
@@ -64,7 +63,7 @@ public class User {
     }
 
 
-    public User(String firstname, String lastname, String email, String password, Boolean is_admin, List<Business> business, Boolean status, List<Role> roles, Date created_at, Date updated_at) {
+    public User(String firstname, String lastname, String email, String password, Boolean is_admin, List<Business> business, Boolean status, Collection<Role> roles, Date created_at, Date updated_at) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -125,11 +124,11 @@ public class User {
         this.is_admin = is_admin;
     }
 
-    public List<Business> getBusiness() {
+    public Collection<Business> getBusiness() {
         return business;
     }
 
-    public void setBusiness(List<Business> business) {
+    public void setBusiness(Collection<Business> business) {
         this.business = business;
     }
 
@@ -141,11 +140,11 @@ public class User {
         this.status = status;
     }
 
-    public List<Role> getRoles() {
+    public Collection<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Collection<Role> roles) {
         this.roles = roles;
     }
 

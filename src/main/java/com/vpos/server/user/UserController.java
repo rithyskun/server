@@ -1,16 +1,21 @@
 package com.vpos.server.user;
 
 import com.vpos.server.role.Role;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/v1/users")
@@ -29,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> registerUser(@RequestBody User user) {
+    public ResponseEntity<User> registerUser(@Valid @RequestBody User user) {
       URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users").toUriString());
       return ResponseEntity.created(uri).body(userService.registerUser(user));
     }
@@ -56,11 +61,13 @@ public class UserController {
 
     @GetMapping(path = "/")
     @ResponseBody
-    public ResponseEntity<List<User>> findUserNameContaining(@RequestParam(required = false) String email, @RequestParam(required = false) String name) {
-        if (StringUtils.hasText(name)) {
-            List<User> _name = userService.findUserContainingName(name);
+    public ResponseEntity<List<User>> findUserNameContaining(@Valid @RequestParam(required = false) String firstname, @RequestParam(required = false) String lastname, @RequestParam(required = false) String email) {
+        if (firstname != null || lastname != null) {
+
+            List<User> _name = userService.findUserContainingName(firstname, lastname);
+            System.out.println(_name);
             return ResponseEntity.ok(_name);
-        } else if(StringUtils.hasText(email)) {
+        } else if(email !=  null) {
             List<User> _email = userService.findUserEmailContaining(email);
             return ResponseEntity.ok(_email);
         }
@@ -74,9 +81,10 @@ public class UserController {
         userService.addRoleToUser(form.getEmail(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
+
 }
 
-@Repository
+
 class RoleToUserForm {
     private String email;
     private String roleName;
@@ -95,5 +103,13 @@ class RoleToUserForm {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    @Override
+    public String toString() {
+        return "RoleToUserForm{" +
+                "email='" + email + '\'' +
+                ", roleName='" + roleName + '\'' +
+                '}';
     }
 }

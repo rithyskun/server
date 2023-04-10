@@ -8,14 +8,12 @@ import com.vpos.server.user.User;
 import com.vpos.server.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-@SpringBootApplication
+@Component
 public class Database implements CommandLineRunner {
 
     private final UserService userService;
@@ -36,9 +34,9 @@ public class Database implements CommandLineRunner {
         businessService.createBusiness(new Business("vStore", "PP", "PP1", true));
         businessService.createBusiness(new Business("xStore", "PP", "PP1", false));
 
-        roleService.createOneRole(new Role("ADMIN"));
-        roleService.createOneRole(new Role("USER"));
-        roleService.createOneRole(new Role("VIEWER"));
+        roleService.createRole(new Role("ADMIN"));
+        roleService.createRole(new Role("USER"));
+        roleService.createRole(new Role("VIEWER"));
 
         userService.registerUser(new User("Rithy", "SKUN", "rithy.skun@outlook.com", "12345678", true, new ArrayList<>(), true, new ArrayList<>(), new Date(), new Date() ));
         userService.registerUser(new User("bill", "mr", "bill.mr@outlook.com", "12345678", false, new ArrayList<>(), true, new ArrayList<>(), new Date(), new Date() ));

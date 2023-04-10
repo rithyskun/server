@@ -8,13 +8,18 @@ package com.vpos.server.user;
 
 import com.vpos.server.role.Role;
 import com.vpos.server.role.RoleRepository;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -22,6 +27,9 @@ public class UserServiceImpl implements UserService{
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+
+    @Autowired
+    private Validator validator;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
@@ -33,21 +41,20 @@ public class UserServiceImpl implements UserService{
     public User registerUser(User user) {
         Optional<User> findUserByEmail = userRepository.findUserByEmail(user.getEmail());
 
-        System.out.println(findUserByEmail);
-
-        if(!StringUtils.hasText(user.getFirstname())){
-            throw new IllegalStateException("First name is required");
-        }
-
-        if(!StringUtils.hasText(user.getLastname())) {
-            throw new IllegalStateException("Last name is required");
-        }
+//        if(!StringUtils.hasText(user.getFirstname())){
+//            throw new IllegalStateException("First name is required");
+//        }
+//
+//        if(!StringUtils.hasText(user.getLastname())) {
+//            throw new IllegalStateException("Last name is required");
+//        }
 
         if(findUserByEmail.isPresent()) {
             throw new IllegalStateException("Email already exists");
         }
 
 //        Role _role = roleRepository.getReferenceById(user.getRoles());
+
 
         return userRepository.save(user);
     }
@@ -94,8 +101,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> findUserContainingName(String name) {
-        return userRepository.findUserContainingName(name);
+    public List<User> findUserContainingName(@Param("firstname") String firstname, @Param("lastname") String lastname) {
+        return userRepository.findUserContainingName(firstname, lastname);
     }
 
     @Override

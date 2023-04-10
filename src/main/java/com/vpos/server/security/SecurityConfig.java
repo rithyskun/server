@@ -7,6 +7,7 @@ package com.vpos.server.security;
  */
 
 
+
 public class SecurityConfig {
 
 }

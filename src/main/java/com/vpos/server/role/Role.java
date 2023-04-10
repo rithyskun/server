@@ -1,17 +1,20 @@
 package com.vpos.server.role;
 
-import com.vpos.server.user.User;
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "`roles`")
 public class Role {
     @Id
-    @SequenceGenerator(sequenceName = "role_sequence", name = "role_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_sequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
+    @NotBlank(message = "Role name is required")
     @Column(name = "roleName", unique = true)
     private String roleName;
 
@@ -36,6 +39,21 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Role role = (Role) o;
+
+        return Objects.equals(id, role.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override

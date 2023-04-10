@@ -1,65 +1,20 @@
 package com.vpos.server.role;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
+/*
+ * @created 10/04/2023 - 2:27 PM
+ * @project server
+ * @author Rithy SKUN
+ */
 
-import java.util.List;
-import java.util.Optional;
+import org.springframework.data.domain.Sort;
 
-@Service
-public class RoleService {
+import java.util.Collection;
 
-    private final RoleRepository roleRepository;
+public interface RoleService {
+    Collection<Role> getRoles();
+    Role createRole(Role role);
 
-    @Autowired
-    public RoleService(RoleRepository roleRepository) {
-        this.roleRepository = roleRepository;
-    }
+    void deleteRole(Long id);
+    Role updateRole(Long id, Role role);
 
-
-    public List<Role> findRoles() {
-        return roleRepository.findAll();
-    }
-
-    public Optional<Role> findOneRoleById(Long id) {
-       return roleRepository.findById(id);
-    }
-
-    public void deleteOneRole(Long id) {
-        roleRepository.findById(id).orElseThrow(() -> {
-            throw new IllegalStateException("The role id " + id + " does not exist");
-        });
-        roleRepository.deleteById(id);
-    }
-
-
-    public Role createOneRole(Role role) {
-        if(!StringUtils.hasText(role.getRoleName())) {
-            throw new IllegalStateException("The role name is required.");
-        }
-
-//       Role _role = roleRepository.findByRoleName(role.getRoleName());
-//        if(_role == null){
-//            throw new IllegalStateException("The role name " + role.getRoleName() + "already exists.");
-//        }
-
-       return roleRepository.save(role);
-    }
-
-    @Transactional
-    public Role updateOneRole(Long roleId, Role role) {
-        Role _role = roleRepository.findById(roleId).orElseThrow(() -> {
-            throw new IllegalStateException("The role id" + roleId + " does not exists.");
-        });
-
-        Role exist = roleRepository.findByRoleName(role.getRoleName());
-
-        if(exist == null) throw new IllegalStateException("The role name " + role.getRoleName() + " already exists.");
-
-        _role.setRoleName(role.getRoleName());
-
-      return roleRepository.save(_role);
-    }
 }

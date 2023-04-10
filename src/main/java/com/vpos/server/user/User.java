@@ -2,34 +2,30 @@ package com.vpos.server.user;
 import com.vpos.server.business.Business;
 import com.vpos.server.role.Role;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+
+import java.util.*;
+
 @Entity
 @Table(name = "`users`")
 public class User {
     @Id
-    @SequenceGenerator(
-            name="user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1)
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private Long id;
 
+    @NotBlank(message = "First name is required")
     @Column(name = "firstname", nullable = false, columnDefinition = "Text")
     private String firstname;
 
+    @NotBlank(message = "Last name is required")
     @Column(name = "lastname", nullable = false, columnDefinition = "Text")
     private String lastname;
 
+    @NotBlank(message = "Email is required")
     @Column(name = "email", nullable = false, columnDefinition = "Text", unique = true)
     private String email;
 
@@ -48,10 +44,10 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
 
-    @CreatedDate
-    @Column(name = "created_at")
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private Date created_at;
-    @LastModifiedDate
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Date updated_at;
 
@@ -162,6 +158,22 @@ public class User {
 
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
     }
 
     @Override

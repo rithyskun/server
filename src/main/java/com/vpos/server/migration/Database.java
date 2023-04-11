@@ -2,6 +2,7 @@ package com.vpos.server.migration;
 
 import com.vpos.server.business.Business;
 import com.vpos.server.business.BusinessService;
+import com.vpos.server.business.BusinessServiceImpl;
 import com.vpos.server.role.Role;
 import com.vpos.server.role.RoleService;
 import com.vpos.server.user.User;
@@ -22,7 +23,7 @@ public class Database implements CommandLineRunner {
     private final BusinessService businessService;
 
     @Autowired
-    public Database( UserService userService, RoleService roleService, BusinessService businessService) {
+    public Database(UserService userService, RoleService roleService, BusinessServiceImpl businessServiceImpl, BusinessService businessService) {
         this.userService = userService;
         this.roleService = roleService;
         this.businessService = businessService;
@@ -44,6 +45,7 @@ public class Database implements CommandLineRunner {
         userService.addRoleToUser("rithy.skun@outlook.com", "ADMIN");
         userService.addRoleToUser("bill.mr@outlook.com", "USER");
 
-
+        userService.addBusinessToUser("rithy.skun@outlook.com", "vStore");
+        userService.addBusinessToUser("bill.mr@outlook.com", "xStore");
     }
 }

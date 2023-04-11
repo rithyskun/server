@@ -12,6 +12,8 @@ import java.util.Optional;
 public interface BusinessRepository extends JpaRepository<Business, Long> {
     Optional<Business> findBusinessByName(String name);
 
+    Business findByName(String name);
+
     @Transactional
     @Modifying
     @Query(value = "DELETE FROM Business WHERE id =:id AND is_active=false")

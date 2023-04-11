@@ -22,4 +22,6 @@ public interface UserService {
     List<User> findUserEmailContaining(String email);
 
     void addRoleToUser(String email, String roleName);
+    void addBusinessToUser(String email, String businessName );
+
 }

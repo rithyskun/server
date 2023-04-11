@@ -1,21 +1,14 @@
 package com.vpos.server.user;
 
-import com.vpos.server.role.Role;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Repository;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/v1/users")
@@ -105,11 +98,4 @@ class RoleToUserForm {
         this.roleName = roleName;
     }
 
-    @Override
-    public String toString() {
-        return "RoleToUserForm{" +
-                "email='" + email + '\'' +
-                ", roleName='" + roleName + '\'' +
-                '}';
-    }
 }

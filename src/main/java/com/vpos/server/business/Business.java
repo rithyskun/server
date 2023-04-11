@@ -1,23 +1,19 @@
 package com.vpos.server.business;
 
-import com.vpos.server.user.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 
 @Entity
-@Table(name = "`business`")
+@Table(name = "business")
 public class Business {
 
     @Id
-    @SequenceGenerator(name = "business_sequence", allocationSize = 1, sequenceName = "business_sequence")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "business_sequence"
-    )
     private Long id;
 
+    @NotBlank(message = "Business is required")
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 

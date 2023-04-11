@@ -1,78 +1,20 @@
 package com.vpos.server.business;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
+/*
+ * @created 11/04/2023 - 9:17 AM
+ * @project server
+ * @author Rithy SKUN
+ */
 
-import java.util.List;
-import java.util.Optional;
+import java.util.Collection;
 
-@Service
-public class BusinessService {
+public interface BusinessService {
 
-    private final BusinessRepository businessRepository;
+    Business createBusiness(Business business);
+    void deleteBusiness(Long id);
 
-    @Autowired
-    public BusinessService(BusinessRepository businessRepository) {
-        this.businessRepository = businessRepository;
-    }
+    Business updateBusiness(Long id, Business business);
 
-    public List<Business> getBusiness() {
-        return businessRepository.findAll();
-    }
+    Collection<Business> getBusiness();
 
-
-    public Business createBusiness(Business business) {
-
-        if(!StringUtils.hasText(business.getName())) {
-            throw new IllegalStateException("Business name is required");
-        }
-
-        Optional<Business> findBusiness = businessRepository.findBusinessByName(business.getName());
-
-        if(findBusiness.isPresent()) {
-            throw new IllegalStateException("The business name " + business.getName() + " already exist");
-        }
-
-       return businessRepository.save(business);
-
-    }
-
-    public void deleteBusinessById(Long id) {
-
-        boolean exists = businessRepository.existsById(id);
-
-        if(!exists) {
-            throw new IllegalStateException("The business id " + id + " does not exists");
-        }
-
-//        businessRepository.deleteById(id);
-        businessRepository.findBusinessByIdAndStatus(id);
-    }
-
-    @Transactional
-    public Business updateBusiness(Long busId, Business business) {
-
-        Business _business = businessRepository.findById(busId).orElseThrow(() -> new IllegalStateException("The business id \" + busId + \" does not exists."));
-
-        if(business != null) {
-            if(!StringUtils.hasText(business.getName())){
-                throw new IllegalStateException("Business name is required");
-            }
-
-            _business.setName(business.getName());
-            _business.setAddress(business.getAddress());
-            _business.setAddress1(business.getAddress1());
-            _business.setIs_active(business.getIs_active());
-        }
-
-      return businessRepository.save(_business);
-
-    }
-
-    public Business findOneBusiness(String busId) {
-        Long id = Long.parseLong(busId);
-        return businessRepository.findById(id).orElseThrow(() -> new IllegalStateException("The business id " + id + " does not exists"));
-    }
 }

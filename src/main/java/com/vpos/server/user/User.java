@@ -10,7 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.*;
 
 @Entity
-@Table(name = "`users`")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

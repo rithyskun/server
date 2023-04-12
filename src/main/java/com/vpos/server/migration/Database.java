@@ -9,6 +9,7 @@ import com.vpos.server.user.User;
 import com.vpos.server.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -20,12 +21,15 @@ public class Database implements CommandLineRunner {
     private final UserService userService;
     private final RoleService roleService;
 
+    private final PasswordEncoder passwordEncoder;
+
     private final BusinessService businessService;
 
     @Autowired
-    public Database(UserService userService, RoleService roleService, BusinessServiceImpl businessServiceImpl, BusinessService businessService) {
+    public Database(UserService userService, RoleService roleService, BusinessServiceImpl businessServiceImpl, PasswordEncoder passwordEncoder, BusinessService businessService) {
         this.userService = userService;
         this.roleService = roleService;
+        this.passwordEncoder = passwordEncoder;
         this.businessService = businessService;
     }
 
@@ -39,8 +43,8 @@ public class Database implements CommandLineRunner {
         roleService.createRole(new Role("USER"));
         roleService.createRole(new Role("VIEWER"));
 
-        userService.registerUser(new User("Rithy", "SKUN", "rithy.skun@outlook.com", "12345678", true, new ArrayList<>(), true, new ArrayList<>(), new Date(), new Date() ));
-        userService.registerUser(new User("bill", "mr", "bill.mr@outlook.com", "12345678", false, new ArrayList<>(), true, new ArrayList<>(), new Date(), new Date() ));
+        userService.registerUser(new User("Rithy", "SKUN", "rithy.skun@outlook.com", passwordEncoder.encode("123456789"), true, new ArrayList<>(), true, new ArrayList<>(), new Date(), new Date() ));
+        userService.registerUser(new User("bill", "mr", "bill.mr@outlook.com", passwordEncoder.encode("123456"), false, new ArrayList<>(), true, new ArrayList<>(), new Date(), new Date() ));
 
         userService.addRoleToUser("rithy.skun@outlook.com", "ADMIN");
         userService.addRoleToUser("bill.mr@outlook.com", "USER");

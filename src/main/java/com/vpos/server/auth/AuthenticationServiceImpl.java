@@ -50,14 +50,6 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public AuthenticationResponse register(RegisterRequest request) {
 
-//        var user = User.builder()
-//                .firstname(request.getFirstname())
-//                .lastname(request.getLastname())
-//                .email(request.getEmail())
-//                .password(passwordEncoder.encode(request.getPassword()))
-//                .role("ADMIN")
-//                .build();
-
         User user = new User(request.getFirstname(),
                 request.getLastname(),
                 request.getEmail(),
@@ -81,6 +73,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 request.getPassword()
         ));
 
+        System.out.println(request);
+
        try {
            var user = userRepository.findUserByEmail(request.getEmail()).orElseThrow();
 
@@ -102,26 +96,38 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
+    @Transactional
     public void saveUserToken(User user, String jwtToken) {
-        var _token = new Token(jwtToken, TokenType.BEARER , false, false, user);
+        try {
+            var _token = new Token(jwtToken, TokenType.BEARER , false, false, user);
 
-        tokenRepository.save(_token);
+            tokenRepository.save(_token);
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+
     }
 
     @Override
     public void revokeAllUsersToken(User user) {
-        var validToken = tokenRepository.findAllValidTokenByUser(user.getId());
+        try {
+            var validToken = tokenRepository.findAllValidTokenByUser(user.getId());
 
-        if(validToken.isEmpty()) {
-            return;
+            if(validToken.isEmpty()) {
+                return;
+            }
+
+            validToken.forEach(token -> {
+                token.setExpired(true);
+                token.setRevoked(true);
+            });
+
+            tokenRepository.saveAll(validToken);
+
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
         }
-
-        validToken.forEach(token -> {
-            token.setExpired(true);
-            token.setRevoked(true);
-        });
-
-        tokenRepository.saveAll(validToken);
     }
 
     @Override

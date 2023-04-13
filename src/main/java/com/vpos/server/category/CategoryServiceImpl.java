@@ -47,15 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional
     public Category updateCategory(Long id, Category category) {
-        Category _category = categoryRepository.findById(id).orElseThrow(() -> {
-            throw new IllegalStateException("The id " + id + " does not exists");
-        });
-
-        Optional<Category> exist = categoryRepository.findByCategoryName(category.getCategoryName());
-
-        if(exist.isPresent()) {
-            throw new IllegalStateException("The category name " + category.getCategoryName() + " already exists");
-        }
+        Category _category = categoryRepository.findById(id).orElseThrow(() -> new IllegalStateException("The id " + id + " does not exists"));
 
         if(_category != null) {
             _category.setCategoryName(category.getCategoryName());
@@ -63,7 +55,13 @@ public class CategoryServiceImpl implements CategoryService {
             _category.setStatus(category.getStatus());
 
         }
+        assert _category != null;
         return categoryRepository.save(_category);
 
+    }
+
+    @Override
+    public Category findById(Long id) {
+       return categoryRepository.findById(id).orElseThrow();
     }
 }

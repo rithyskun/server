@@ -68,6 +68,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     SecurityContextHolder.getContext().setAuthentication(authToken);
                 }
 
+                //TODO regenerate the token if expired
+
+
             }
 
             filterChain.doFilter(request, response);

@@ -5,11 +5,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(path = "api/v1/roles")
 public class RoleController {
@@ -27,9 +30,9 @@ public class RoleController {
     }
 
     @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Role> createRole(@Valid @RequestBody Role role) {
-        return ResponseEntity.ok(roleService.createRole(role));
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/roles").toUriString());
+        return ResponseEntity.created(uri).body(roleService.createRole(role));
     }
 
     @PutMapping(path = "{roleId}")

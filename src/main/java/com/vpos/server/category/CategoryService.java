@@ -7,6 +7,7 @@ package com.vpos.server.category;
  */
 
 import java.util.Collection;
+import java.util.Optional;
 
 public interface CategoryService {
     Collection<Category> getCategories();
@@ -16,4 +17,6 @@ public interface CategoryService {
     void deleteCategory(Long id);
 
     Category updateCategory(Long id, Category category);
+
+    Category findById(Long id);
 }

@@ -23,7 +23,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +30,25 @@ import java.util.stream.Collectors;
 
 @ControllerAdvice
 public class AppExceptionHandler extends ResponseEntityExceptionHandler {
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        Map<String, Object> body = new LinkedHashMap<>();
+        LocalDateTime dateTime = LocalDateTime.now();
+        String formattedDate = AppUtils.format(dateTime, "dd/MM/yyyy HH:mm:ss a");
+        body.put("timestamp", formattedDate);
+        body.put("status", status.value());
+
+        List<ErrorMessage> errors = ex.getBindingResult()
+                .getFieldErrors()
+                .stream()
+                .map(this::mapToErrorMessage)
+                .collect(Collectors.toList());
+
+        body.put("errors", errors);
+
+        return new ResponseEntity<>(body, headers, status);
+    }
 
     @ExceptionHandler(Exception.class)
     @ResponseBody
@@ -44,27 +62,8 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         ErrorDetails errorDetails = new ErrorDetails(LocalDateTime.now(),"ConstraintViolationException", ex.getMessage());
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
-    @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        LocalDateTime dateTime = LocalDateTime.now();
-        String formattedDate = AppUtils.format(dateTime, "dd/MM/yyyy HH:mm:ss a");
-        body.put("timestamp", formattedDate);
-        body.put("status", status.value());
 
-        List<ErrorMessage> errors = ex.getBindingResult()
-                .getFieldErrors()
-                .stream()
-                .map(error -> mapToErrorMessage(error))
-                .collect(Collectors.toList());
-
-        body.put("errors", errors);
-
-        return new ResponseEntity<>(body, headers, status);
-    }
-
-
-    private ErrorMessage mapToErrorMessage(ObjectError error) {
+    public ErrorMessage mapToErrorMessage(ObjectError error) {
         ConstraintViolationImpl<?> source =  (ConstraintViolationImpl)error.unwrap(ConstraintViolationImpl.class);
         String fieldError = "";
         String rejectedValue = "";
@@ -74,6 +73,5 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         }
         return new ErrorMessage(error.getObjectName(),fieldError,error.getDefaultMessage(),rejectedValue);
     }
-
 
 }

@@ -3,6 +3,11 @@ package com.vpos.server.migration;
 import com.vpos.server.business.Business;
 import com.vpos.server.business.BusinessService;
 import com.vpos.server.business.BusinessServiceImpl;
+import com.vpos.server.category.Category;
+import com.vpos.server.category.CategoryService;
+import com.vpos.server.product.Product;
+import com.vpos.server.product.ProductService;
+import com.vpos.server.product.ProductType;
 import com.vpos.server.role.Role;
 import com.vpos.server.role.RoleService;
 import com.vpos.server.user.User;
@@ -14,23 +19,26 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 @Component
 public class Database implements CommandLineRunner {
 
     private final UserService userService;
     private final RoleService roleService;
-
     private final PasswordEncoder passwordEncoder;
-
     private final BusinessService businessService;
+    private final CategoryService categoryService;
+    private final ProductService productService;
 
     @Autowired
-    public Database(UserService userService, RoleService roleService, BusinessServiceImpl businessServiceImpl, PasswordEncoder passwordEncoder, BusinessService businessService) {
+    public Database(UserService userService, RoleService roleService, BusinessServiceImpl businessServiceImpl, PasswordEncoder passwordEncoder, BusinessService businessService, CategoryService categoryService, ProductService productService) {
         this.userService = userService;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
         this.businessService = businessService;
+        this.categoryService = categoryService;
+        this.productService = productService;
     }
 
     @Override
@@ -51,5 +59,10 @@ public class Database implements CommandLineRunner {
 
         userService.addBusinessToUser("rithy.skun@outlook.com", "vStore");
         userService.addBusinessToUser("bill.mr@outlook.com", "xStore");
+
+        categoryService.createCategory( new Category("category-1", "http:///kjadsfjlkad", true));
+        categoryService.createCategory( new Category("category-2", "http:///kjadsfjlkad", true));
+
+//        productService.createProduct(new Product("Fry noodle", "description", 12.5, 1L, "barcode", "variant", "sku", "brand-1", 1L, true, true, false, false, true, 0,0, ProductType.Single, "httpljadskfljladsf" ));
     }
 }

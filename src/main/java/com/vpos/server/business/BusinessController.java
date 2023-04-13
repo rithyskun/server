@@ -1,6 +1,5 @@
 package com.vpos.server.business;
 
-import com.vpos.server.utils.AppUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping(path = "api/v1/business")
 public class BusinessController {

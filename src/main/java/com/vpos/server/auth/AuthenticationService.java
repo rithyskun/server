@@ -9,7 +9,6 @@ package com.vpos.server.auth;
 import com.vpos.server.user.User;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.http.ResponseEntity;
 
 import java.io.IOException;
 

@@ -1,10 +1,8 @@
 package com.vpos.server.business;
 
-import com.vpos.server.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,12 +11,10 @@ import java.util.Optional;
 public class BusinessServiceImpl implements BusinessService {
 
     private final BusinessRepository businessRepository;
-    private final UserRepository userRepository;
 
     @Autowired
-    public BusinessServiceImpl(BusinessRepository businessRepository, UserRepository userRepository) {
+    public BusinessServiceImpl(BusinessRepository businessRepository) {
         this.businessRepository = businessRepository;
-        this.userRepository = userRepository;
     }
 
     @Override
@@ -58,10 +54,6 @@ public class BusinessServiceImpl implements BusinessService {
         Business _business = businessRepository.findById(busId).orElseThrow(() -> new IllegalStateException("The business id \" + busId + \" does not exists."));
 
         if(business != null) {
-            if(!StringUtils.hasText(business.getName())){
-                throw new IllegalStateException("Business name is required");
-            }
-
             _business.setName(business.getName());
             _business.setAddress(business.getAddress());
             _business.setAddress1(business.getAddress1());

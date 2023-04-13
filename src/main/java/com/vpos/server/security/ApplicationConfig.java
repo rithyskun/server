@@ -4,7 +4,7 @@ package com.vpos.server.security;
  * @created 11/04/2023 - 10:59 PM
  * @project server
  * @author Rithy SKUN
- */
+*/
 
 import com.vpos.server.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

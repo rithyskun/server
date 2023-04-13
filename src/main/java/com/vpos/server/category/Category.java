@@ -29,8 +29,7 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long id, String categoryName, String categoryImageUrl, Boolean status) {
-        this.id = id;
+    public Category(String categoryName, String categoryImageUrl, Boolean status) {
         this.categoryName = categoryName;
         this.categoryImageUrl = categoryImageUrl;
         this.status = status;

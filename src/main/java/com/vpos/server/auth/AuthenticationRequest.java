@@ -1,10 +1,10 @@
 package com.vpos.server.auth;
 
-/*
+/**
  * @created 12/04/2023 - 5:06 AM
  * @project server
  * @author Rithy SKUN
- */
+ **/
 
 public class AuthenticationRequest {
     private String email;

@@ -1,4 +1,5 @@
 package com.vpos.server.user;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vpos.server.business.Business;
 import com.vpos.server.role.Role;
 import jakarta.persistence.*;
@@ -112,7 +113,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ADMIN"));
     }
-
+    @Override
     public String getPassword() {
         return password;
     }

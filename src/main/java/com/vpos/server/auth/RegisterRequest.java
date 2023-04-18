@@ -1,10 +1,10 @@
 package com.vpos.server.auth;
 
-/*
+/**
  * @created 12/04/2023 - 5:04 AM
  * @project server
  * @author Rithy SKUN
- */
+ **/
 
 import com.vpos.server.business.Business;
 import com.vpos.server.role.Role;

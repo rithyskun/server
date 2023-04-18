@@ -15,6 +15,7 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Rithy SKUN
@@ -36,8 +37,16 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<Collection<Product>> getProducts() {
-        return ResponseEntity.ok().body(productService.getProducts());
+    public ResponseEntity<Collection<ProductResponse>> getProducts() {
+        return ResponseEntity.ok().body(productService.getProducts()
+                .stream()
+                .map(product -> new ProductResponse(
+                        product.getId(),
+                        product.getProductName(),
+                        product.getSalePrice(),
+                        product.getStatus(),
+                        product.getProductCategory()
+        )).collect(Collectors.toList()));
     }
 
     @PostMapping

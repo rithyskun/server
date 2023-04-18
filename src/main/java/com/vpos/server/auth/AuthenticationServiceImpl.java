@@ -1,10 +1,10 @@
 package com.vpos.server.auth;
 
-/*
+/**
  * @created 12/04/2023 - 5:11 AM
  * @project server
  * @author Rithy SKUN
- */
+ **/
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vpos.server.security.JwtService;

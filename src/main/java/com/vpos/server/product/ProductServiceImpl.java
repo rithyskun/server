@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * @author Rithy SKUN
@@ -22,7 +23,10 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
 
-    @Autowired
+    // One constructor injection will not require @Autowired annotation
+    // but if we have more than one constructor, it was recommending to have it.
+    // https://www.baeldung.com/constructor-injection-in-spring
+    //    @Autowired
     public ProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
@@ -53,13 +57,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void deleteProduct(Long id) {
-        boolean exist = productRepository.existsById(id);
+        try {
+            boolean exist = productRepository.existsById(id);
 
-        if(!exist) {
-           throw new IllegalStateException("The id " + id + " does not exists");
+            if(!exist) {
+                throw new IllegalStateException("The id " + id + " does not exists");
+            }
+
+            productRepository.deleteById(id);
+
+        } catch (Exception ex) {
+            throw new IllegalStateException(ex);
         }
-
-        productRepository.deleteById(id);
     }
 
     @Override

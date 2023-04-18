@@ -1,10 +1,10 @@
 package com.vpos.server.auth;
 
-/*
+/**
  * @created 12/04/2023 - 5:10 AM
  * @project server
  * @author Rithy SKUN
- */
+ **/
 
 import com.vpos.server.user.User;
 import jakarta.servlet.http.HttpServletRequest;

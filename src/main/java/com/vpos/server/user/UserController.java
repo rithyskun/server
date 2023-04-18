@@ -1,5 +1,7 @@
 package com.vpos.server.user;
 
+import com.vpos.server.business.Business;
+import com.vpos.server.role.Role;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 @RestController
@@ -23,8 +27,19 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getUsers() {
-       return ResponseEntity.ok().body(userService.getUsers());
+    public ResponseEntity<List<UserResponse>> getUsers() {
+        return ResponseEntity.ok()
+                .body(userService.getUsers()
+                        .stream()
+                        .map(u-> new UserResponse(
+                                u.getId(),
+                                u.getFirstname(),
+                                u.getLastname(),
+                                u.getEmail(),
+                                u.getStatus(),
+                                (List<Role>) u.getRoles(),
+                                (List<Business>) u.getBusiness()
+                        )).collect(Collectors.toList()));
     }
 
     @PostMapping
@@ -55,7 +70,11 @@ public class UserController {
 
     @GetMapping(path = "/")
     @ResponseBody
-    public ResponseEntity<List<User>> findUserNameContaining(@Valid @RequestParam(required = false) String firstname, @RequestParam(required = false) String lastname, @RequestParam(required = false) String email) {
+    public ResponseEntity<List<User>> findUserNameContaining(
+            @Valid @RequestParam(required = false) String firstname,
+            @RequestParam(required = false) String lastname,
+            @RequestParam(required = false) String email) {
+
         if (firstname != null || lastname != null) {
 
             List<User> _name = userService.findUserContainingName(firstname, lastname);

@@ -10,13 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping(path = "api/v1/users")
+@RequestMapping(path = "/api/v1/users")
 public class UserController {
 
     private final UserService userService;
@@ -44,7 +45,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> registerUser(@Valid @RequestBody User user) {
-      URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/users").toUriString());
+      URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/v1/users").toUriString());
       return ResponseEntity.created(uri).body(userService.registerUser(user));
     }
 
@@ -89,7 +90,7 @@ public class UserController {
         }
     }
 
-    @PostMapping(path = "/role/addtouser")
+    @PostMapping(path = "/role/adduser")
     public ResponseEntity<?> addRoleToUser(@RequestBody RoleToUserForm form) {
         userService.addRoleToUser(form.getEmail(), form.getRoleName());
         return ResponseEntity.ok().build();

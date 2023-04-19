@@ -49,11 +49,11 @@ public class User implements UserDetails {
     private Collection<Role> roles = new ArrayList<>();
 
     @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
-    private Date created_at;
+    @Column(name = "createdAt", updatable = false)
+    private Date createdAt;
     @UpdateTimestamp
-    @Column(name = "updated_at")
-    private Date updated_at;
+    @Column(name = "updatedAt")
+    private Date updatedAt;
 
     public User() {
     }
@@ -63,7 +63,7 @@ public class User implements UserDetails {
     }
 
 
-    public User(String firstname, String lastname, String email, String password, Boolean is_admin, List<Business> business, Boolean status, Collection<Role> roles, Date created_at, Date updated_at) {
+    public User(String firstname, String lastname, String email, String password, Boolean is_admin, List<Business> business, Boolean status, Collection<Role> roles, Date createdAt, Date updatedAt) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -72,8 +72,8 @@ public class User implements UserDetails {
         this.business = business;
         this.status = status;
         this.roles = roles;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
 
@@ -179,20 +179,20 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
 
@@ -223,8 +223,8 @@ public class User implements UserDetails {
                 ", business=" + business +
                 ", status=" + status +
                 ", roles=" + roles +
-                ", created_at=" + created_at +
-                ", updated_at=" + updated_at +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

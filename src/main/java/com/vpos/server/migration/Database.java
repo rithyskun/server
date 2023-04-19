@@ -5,21 +5,21 @@ import com.vpos.server.business.BusinessService;
 import com.vpos.server.business.BusinessServiceImpl;
 import com.vpos.server.category.Category;
 import com.vpos.server.category.CategoryService;
-import com.vpos.server.product.Product;
 import com.vpos.server.product.ProductService;
-import com.vpos.server.product.ProductType;
 import com.vpos.server.role.Role;
 import com.vpos.server.role.RoleService;
+import com.vpos.server.upload.storage.FileUploadLocalStorageService;
 import com.vpos.server.user.User;
 import com.vpos.server.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Optional;
 
 @Component
 public class Database implements CommandLineRunner {
@@ -31,21 +31,26 @@ public class Database implements CommandLineRunner {
     private final CategoryService categoryService;
     private final ProductService productService;
 
+    private final FileUploadLocalStorageService fileUploadLocalStorageService;
+
     @Autowired
-    public Database(UserService userService, RoleService roleService, BusinessServiceImpl businessServiceImpl, PasswordEncoder passwordEncoder, BusinessService businessService, CategoryService categoryService, ProductService productService) {
+    public Database(UserService userService, RoleService roleService, BusinessServiceImpl businessServiceImpl, PasswordEncoder passwordEncoder, BusinessService businessService, CategoryService categoryService, ProductService productService, FileUploadLocalStorageService fileUploadLocalStorageService) {
         this.userService = userService;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
         this.businessService = businessService;
         this.categoryService = categoryService;
         this.productService = productService;
+        this.fileUploadLocalStorageService = fileUploadLocalStorageService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        businessService.createBusiness(new Business("vStore", "PP", "PP1", true));
-        businessService.createBusiness(new Business("xStore", "PP", "PP1", false));
+//        fileUploadLocalStorageService.init();
+
+        businessService.createBusiness(new Business("vStore", "PP", "PP1", true, LocalDateTime.now(), LocalDateTime.now()));
+        businessService.createBusiness(new Business( "xStore", "PP", "PP1", false, LocalDateTime.now(), LocalDateTime.now()));
 
         roleService.createRole(new Role("ADMIN"));
         roleService.createRole(new Role("USER"));

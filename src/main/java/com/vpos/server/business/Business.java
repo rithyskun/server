@@ -2,6 +2,11 @@ package com.vpos.server.business;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Entity
@@ -26,18 +31,23 @@ public class Business {
     @Column(name = "is_active", nullable = false)
     private Boolean is_active = false;
 
+    @CreationTimestamp
+    @Column(name = "createdAt", updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
+    @UpdateTimestamp
+    @Column(name = "updatedAt")
+    private LocalDateTime updatedAt = LocalDateTime.now();
+
     public Business() {
     }
 
-    public Business(Long id) {
-        this.id = id;
-    }
-
-    public Business(String name, String address, String address1, Boolean is_active) {
+    public Business(String name, String address, String address1, Boolean is_active, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.name = name;
         this.address = address;
         this.address1 = address1;
         this.is_active = is_active;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public Long getId() {
@@ -80,6 +90,22 @@ public class Business {
         this.is_active = is_active;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
     @Override
     public String toString() {
         return "Business{" +
@@ -88,6 +114,8 @@ public class Business {
                 ", address='" + address + '\'' +
                 ", address1='" + address1 + '\'' +
                 ", is_active=" + is_active +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
                 '}';
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping(path = "api/v1/auth")
+@RequestMapping(path = "/api/v1/auth")
 public class AuthenticationController {
 
     private final AuthenticationService authenticationService;
@@ -37,6 +37,7 @@ public class AuthenticationController {
 
     @PostMapping(path = "/refresh-token")
     public void refreshToken(HttpServletRequest request, HttpServletResponse response) throws Exception{
+        System.out.println(request);
        authenticationService.refreshToken(request, response);
     }
 }

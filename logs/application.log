@@ -1,75 +1,82 @@
-2023-04-19 16:57:33,207 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.0.Final
-2023-04-19 16:57:33,273 INFO o.s.b.StartupInfoLogger [restartedMain] Starting ServerApplication using Java 20 with PID 5488 (E:\springboot\server\target\classes started by User in E:\springboot\server)
-2023-04-19 16:57:33,279 DEBUG o.s.b.StartupInfoLogger [restartedMain] Running with Spring Boot v3.0.5, Spring v6.0.7
-2023-04-19 16:57:33,281 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2023-04-19 16:57:33,344 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
-2023-04-19 16:57:33,345 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
-2023-04-19 16:57:33,955 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-04-19 16:57:34,012 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 49 ms. Found 6 JPA repository interfaces.
-2023-04-19 16:57:34,701 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 4000 (http)
-2023-04-19 16:57:34,710 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-4000"]
-2023-04-19 16:57:34,712 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2023-04-19 16:57:34,713 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.7]
-2023-04-19 16:57:34,778 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2023-04-19 16:57:34,780 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1432 ms
-2023-04-19 16:57:34,963 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-04-19 16:57:35,010 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.1.7.Final
-2023-04-19 16:57:35,333 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2023-04-19 16:57:35,424 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@7f54f228
-2023-04-19 16:57:35,425 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2023-04-19 16:57:35,444 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
-2023-04-19 16:57:36,154 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,154 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "products" does not exist, skipping
-2023-04-19 16:57:36,155 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,156 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "products" does not exist, skipping
-2023-04-19 16:57:36,156 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,157 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "tokens" does not exist, skipping
-2023-04-19 16:57:36,157 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,157 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "users_business" does not exist, skipping
-2023-04-19 16:57:36,158 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,158 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "users_business" does not exist, skipping
-2023-04-19 16:57:36,159 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,159 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "users_roles" does not exist, skipping
-2023-04-19 16:57:36,159 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,159 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "users_roles" does not exist, skipping
-2023-04-19 16:57:36,160 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,160 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "business" does not exist, skipping
-2023-04-19 16:57:36,161 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,161 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "categories" does not exist, skipping
-2023-04-19 16:57:36,162 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,162 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "products" does not exist, skipping
-2023-04-19 16:57:36,162 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,162 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "roles" does not exist, skipping
-2023-04-19 16:57:36,163 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,164 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "tokens" does not exist, skipping
-2023-04-19 16:57:36,164 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,164 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "users" does not exist, skipping
-2023-04-19 16:57:36,165 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,166 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "users_business" does not exist, skipping
-2023-04-19 16:57:36,167 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,167 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "users_roles" does not exist, skipping
-2023-04-19 16:57:36,168 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,168 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "business_seq" does not exist, skipping
-2023-04-19 16:57:36,170 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,170 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "categories_seq" does not exist, skipping
-2023-04-19 16:57:36,170 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,170 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "products_seq" does not exist, skipping
-2023-04-19 16:57:36,171 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,171 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "roles_seq" does not exist, skipping
-2023-04-19 16:57:36,171 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,171 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "tokens_seq" does not exist, skipping
-2023-04-19 16:57:36,172 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
-2023-04-19 16:57:36,172 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "users_seq" does not exist, skipping
-2023-04-19 16:57:36,270 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-04-19 16:57:36,276 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-04-19 16:57:36,852 DEBUG o.s.w.f.GenericFilterBean [restartedMain] Filter 'jwtAuthenticationFilter' configured for use
-2023-04-19 16:57:37,153 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-04-19 16:57:37,467 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6c16bc7c, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4014ad9b, org.springframework.security.web.context.SecurityContextHolderFilter@5ccd9c32, org.springframework.security.web.header.HeaderWriterFilter@79bf5e29, org.springframework.web.filter.CorsFilter@18ca5c7a, org.springframework.security.web.authentication.logout.LogoutFilter@4a05b0ad, com.vpos.server.security.JwtAuthenticationFilter@6b41546d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67130532, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5d3827a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@285d908c, org.springframework.security.web.session.SessionManagementFilter@359b87d2, org.springframework.security.web.access.ExceptionTranslationFilter@5eddbcda, org.springframework.security.web.access.intercept.AuthorizationFilter@68789ac7]
-2023-04-19 16:57:37,692 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
-2023-04-19 16:57:37,708 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-4000"]
-2023-04-19 16:57:37,732 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 4000 (http) with context path ''
-2023-04-19 16:57:37,744 INFO o.s.b.StartupInfoLogger [restartedMain] Started ServerApplication in 4.96 seconds (process running for 5.724)
-2023-04-19 16:57:51,508 INFO o.a.j.l.DirectJDKLog [http-nio-4000-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-04-19 16:57:51,508 INFO o.s.w.s.FrameworkServlet [http-nio-4000-exec-1] Initializing Servlet 'dispatcherServlet'
-2023-04-19 16:57:51,511 INFO o.s.w.s.FrameworkServlet [http-nio-4000-exec-1] Completed initialization in 1 ms
-2023-04-19 16:57:58,311 INFO c.v.s.u.AppUtils [http-nio-4000-exec-3] File successfully deleted
+2023-04-20 11:41:45,595 INFO o.h.v.i.u.Version [background-preinit] HV000001: Hibernate Validator 8.0.0.Final
+2023-04-20 11:41:45,646 INFO o.s.b.StartupInfoLogger [restartedMain] Starting ServerApplication using Java 20 with PID 27632 (E:\springboot\server\target\classes started by User in E:\springboot\server)
+2023-04-20 11:41:45,650 DEBUG o.s.b.StartupInfoLogger [restartedMain] Running with Spring Boot v3.0.5, Spring v6.0.7
+2023-04-20 11:41:45,652 INFO o.s.b.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2023-04-20 11:41:45,700 INFO o.s.b.l.DeferredLog [restartedMain] Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-04-20 11:41:45,701 INFO o.s.b.l.DeferredLog [restartedMain] For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-04-20 11:41:46,349 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-04-20 11:41:46,428 INFO o.s.d.r.c.RepositoryConfigurationDelegate [restartedMain] Finished Spring Data repository scanning in 68 ms. Found 7 JPA repository interfaces.
+2023-04-20 11:41:47,038 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat initialized with port(s): 4000 (http)
+2023-04-20 11:41:47,046 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-4000"]
+2023-04-20 11:41:47,047 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2023-04-20 11:41:47,048 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.7]
+2023-04-20 11:41:47,100 INFO o.a.j.l.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2023-04-20 11:41:47,103 INFO o.s.b.w.s.c.ServletWebServerApplicationContext [restartedMain] Root WebApplicationContext: initialization completed in 1399 ms
+2023-04-20 11:41:47,222 INFO o.h.j.i.u.LogHelper [restartedMain] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-04-20 11:41:47,269 INFO o.h.Version [restartedMain] HHH000412: Hibernate ORM core version 6.1.7.Final
+2023-04-20 11:41:47,527 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2023-04-20 11:41:47,600 INFO c.z.h.p.HikariPool [restartedMain] HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@3cdc0581
+2023-04-20 11:41:47,602 INFO c.z.h.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2023-04-20 11:41:47,619 INFO o.h.e.j.d.i.DialectFactoryImpl [restartedMain] HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2023-04-20 11:41:48,279 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,279 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "products" does not exist, skipping
+2023-04-20 11:41:48,280 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,280 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "products" does not exist, skipping
+2023-04-20 11:41:48,280 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,280 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "tokens" does not exist, skipping
+2023-04-20 11:41:48,282 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,283 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "users_business" does not exist, skipping
+2023-04-20 11:41:48,283 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,284 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "users_business" does not exist, skipping
+2023-04-20 11:41:48,284 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,284 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "users_roles" does not exist, skipping
+2023-04-20 11:41:48,285 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,285 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] relation "users_roles" does not exist, skipping
+2023-04-20 11:41:48,286 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,286 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "business" does not exist, skipping
+2023-04-20 11:41:48,286 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,287 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "categories" does not exist, skipping
+2023-04-20 11:41:48,287 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,287 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "file_storage" does not exist, skipping
+2023-04-20 11:41:48,288 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,288 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "products" does not exist, skipping
+2023-04-20 11:41:48,288 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,289 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "roles" does not exist, skipping
+2023-04-20 11:41:48,290 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,291 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "tokens" does not exist, skipping
+2023-04-20 11:41:48,291 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,292 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "users" does not exist, skipping
+2023-04-20 11:41:48,292 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,292 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "users_business" does not exist, skipping
+2023-04-20 11:41:48,292 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,293 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] table "users_roles" does not exist, skipping
+2023-04-20 11:41:48,293 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,293 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "business_seq" does not exist, skipping
+2023-04-20 11:41:48,294 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,294 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "categories_seq" does not exist, skipping
+2023-04-20 11:41:48,294 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,294 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "file_storage_seq" does not exist, skipping
+2023-04-20 11:41:48,295 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,295 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "products_seq" does not exist, skipping
+2023-04-20 11:41:48,295 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,295 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "roles_seq" does not exist, skipping
+2023-04-20 11:41:48,296 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,296 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "tokens_seq" does not exist, skipping
+2023-04-20 11:41:48,296 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] SQL Warning Code: 0, SQLState: 00000
+2023-04-20 11:41:48,296 WARN o.h.e.j.s.SqlExceptionHelper$StandardWarningHandler [restartedMain] sequence "users_seq" does not exist, skipping
+2023-04-20 11:41:48,386 INFO o.h.e.t.j.p.i.JtaPlatformInitiator [restartedMain] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-04-20 11:41:48,393 INFO o.s.o.j.AbstractEntityManagerFactoryBean [restartedMain] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-04-20 11:41:48,966 DEBUG o.s.w.f.GenericFilterBean [restartedMain] Filter 'jwtAuthenticationFilter' configured for use
+2023-04-20 11:41:49,297 WARN o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-04-20 11:41:49,589 INFO o.s.s.w.DefaultSecurityFilterChain [restartedMain] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@65ff5306, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@67f495f9, org.springframework.security.web.context.SecurityContextHolderFilter@136e89f7, org.springframework.security.web.header.HeaderWriterFilter@16800d7a, org.springframework.web.filter.CorsFilter@6cec2af, org.springframework.security.web.authentication.logout.LogoutFilter@1358fc53, com.vpos.server.security.JwtAuthenticationFilter@370cf648, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1675e3e4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1caa7856, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@79c6a869, org.springframework.security.web.session.SessionManagementFilter@1922d859, org.springframework.security.web.access.ExceptionTranslationFilter@215568c8, org.springframework.security.web.access.intercept.AuthorizationFilter@28554b93]
+2023-04-20 11:41:49,786 INFO o.s.b.d.a.OptionalLiveReloadServer [restartedMain] LiveReload server is running on port 35729
+2023-04-20 11:41:49,800 INFO o.a.j.l.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-4000"]
+2023-04-20 11:41:49,821 INFO o.s.b.w.e.t.TomcatWebServer [restartedMain] Tomcat started on port(s): 4000 (http) with context path ''
+2023-04-20 11:41:49,830 INFO o.s.b.StartupInfoLogger [restartedMain] Started ServerApplication in 4.641 seconds (process running for 5.346)
+2023-04-20 11:42:11,354 INFO o.a.j.l.DirectJDKLog [http-nio-4000-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-04-20 11:42:11,355 INFO o.s.w.s.FrameworkServlet [http-nio-4000-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-04-20 11:42:11,356 INFO o.s.w.s.FrameworkServlet [http-nio-4000-exec-2] Completed initialization in 1 ms
+2023-04-20 11:42:54,355 INFO o.s.o.j.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-04-20 11:42:54,356 INFO o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl [SpringApplicationShutdownHook] HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+2023-04-20 11:42:54,406 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-04-20 11:42:54,409 INFO c.z.h.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

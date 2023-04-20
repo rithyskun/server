@@ -47,7 +47,7 @@ public class Database implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-//        fileUploadLocalStorageService.init();
+        fileUploadLocalStorageService.init();
 
         businessService.createBusiness(new Business("vStore", "PP", "PP1", true, LocalDateTime.now(), LocalDateTime.now()));
         businessService.createBusiness(new Business( "xStore", "PP", "PP1", false, LocalDateTime.now(), LocalDateTime.now()));

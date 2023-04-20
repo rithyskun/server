@@ -22,8 +22,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.nio.charset.Charset;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -66,19 +68,23 @@ public class AppUtils {
         return uuid;
     }
 
-    //    https://www.baeldung.com/java-generating-barcodes-qr-codes
-//    public static BufferedImage generateQRCodeImage(String barcodeText) throws Exception {
-//
-//        ByteArrayOutputStream stream = QRCode
-//                .from(barcodeText)
-//                .withSize(250, 250)
-//                .stream();
-//        ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
-//
-//        return ImageIO.read(bis);
-//
-////        return stream;
-//    }
+    //Generate random string
+    public static String generateRandomString() {
+
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 7;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int)
+                    (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        String generatedString = buffer.toString();
+
+        return generatedString;
+    }
 
     @Bean
     public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {

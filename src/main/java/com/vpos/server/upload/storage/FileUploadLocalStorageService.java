@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public interface FileUploadLocalStorageService {
     void init();
 
-    void save(MultipartFile files);
+    void save(MultipartFile file);
 
     Resource load(String fileName);
 
